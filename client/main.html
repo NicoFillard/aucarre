@@ -14,10 +14,12 @@
 	</ul>
 
 	<hr/>
+  {{#if currentUser}}
     <div id="form">
         <div>Ajoutez une idée :</div>
 		<input id="title" type="text" placeholder="Titre"/>
 		<input id="content" type="text" placeholder="Votre idée"/>
         <button id="submit_idea">Nouvelle idée</button>
     </div>
+  {{/if}}
 </template>
