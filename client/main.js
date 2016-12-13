@@ -3,6 +3,9 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
+Router.route('/', {
+    template: 'viewIdea'
+});
 
 if ( Meteor.isServer )
 {
