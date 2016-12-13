@@ -45,6 +45,7 @@
       <tr>
        <td><strong>Titre</strong></td>
        <td><strong>Idée</strong></td>
+       <td><strong>Note</strong></td>
       </tr>
     </thead>
     <tbody>
@@ -53,7 +54,9 @@
         <td>{{ title }}</td>
         <td>{{ content }}</td>
         <td>{{note}}</td>
-        <td><button id="moins"> - </button><button id="plus"> + </button></td>
+        {{#if currentUser}}
+          <td><button id="moins"> - </button><button id="plus"> + </button></td>
+        {{/if}}
       </tr>
       {{/each}}
     </tbody>
