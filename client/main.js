@@ -14,7 +14,7 @@ if ( Meteor.isServer )
 			// Populate once
 			if ( !ideas.find().count() )
 			{
-				ideas.insert( { title : "java", content : "javascript"} );
+				ideas.insert( { title : "java", content : "javascript", note : 0} );
 			}
 		}
 	);
@@ -33,27 +33,31 @@ if ( Meteor.isClient )
 				(
 					function( ideas, index, cursor )
 					{
-						return { title : ideas.title, content : ideas.content };
+						return { id : ideas._id, title : ideas.title, content : ideas.content, note : ideas.note};
 					}
 				);
-			}
+			},
+			getResult: function() {
+                //retourne tout le listItem
+            return ideas.find().fetch();
+        }
+
 		}
 	);
 
 	// Events
 	Template.viewIdea.events
 	( {
-		'click #submit_idea' : function( event, template )
-		{
-			event.preventDefault();
-			var $title = template.find( "#title" );
-			var $content = template.find( "#content" );
+		'click #submit_idea' : function( event, template ) {
+            event.preventDefault();
+            var $title = template.find("#title");
+            var $content = template.find("#content");
 
-			if( $title.value !== "" && $content.value !== "" ){
+            if ($title.value !== "" && $content.value !== "") {
 
-				ideas.insert( { title : $title.value , content : $content.value } );
-			}
-		}
+                ideas.insert({title: $title.value, content: $content.value, note: 0});
+            }
+        }
 	} );
 }
 
