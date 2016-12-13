@@ -26,6 +26,9 @@ body {
   font-family: 'Varela Round';
 }
 /*=== 2. Anchor Link ===*/
+li {
+  list-style: none;
+}
 a {
   color: #aaaaaa;
   transition: all ease-in-out 200ms;

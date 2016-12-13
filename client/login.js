@@ -6,7 +6,7 @@ import './login.html';
 
 
 Template.login.events({
-    '#submit_login': function(event){
+    'click #submit_login': function(event){
         event.preventDefault();
         var email = $('[name=email]').val();
         var password = $('[name=password]').val();

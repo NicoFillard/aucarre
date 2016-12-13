@@ -1,18 +1,61 @@
 <template name="viewIdea">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
   <h1>Idea Box</h1>
-	<ul>
-      {{#each all_ideas}}
-		  <li> {{ title }} : {{ content }}</li>
-      {{/each}}
+	<ul class="list-group">
+
+		  <table class="table table-hover">
+		    <thead>
+          <tr>
+  		     <td><strong>Titre</strong></td>
+           <td><strong>Idée</strong></td>
+          </tr>
+		    </thead>
+        <tbody>
+          {{#each all_ideas}}
+          <tr>
+            <td>{{ title }}</td>
+            <td>{{ content }}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+		  </table>
+
 	</ul>
 
 	<hr/>
   {{#if currentUser}}
-    <div id="form">
-        <div>Ajoutez une idée :</div>
-		<input id="title" type="text" placeholder="Titre"/>
-		<input id="content" type="text" placeholder="Votre idée"/>
-        <button id="submit_idea">Nouvelle idée</button>
+    <div id="form-horizontal">
+      <div>Ajoutez une idée :</div>
+
+      <div class="form-group">
+        <div class="col-sm-10 col-md-8">
+    		  <input class="form-control col-md-2" id="title" type="text" placeholder="Titre"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10 col-md-8">
+    		  <input class="form-control col-lg-2" id="content" type="text" placeholder="Votre idée"/>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <button class="btn btn-default" id="submit_idea">Nouvelle idée</button>
+      </div>
     </div>
   {{/if}}
+
+  <ul class="list-group">
+    {{#if currentUser}}
+      <li><a href="#" class="logout">Déconnexion</a></li>
+    {{/if}}
+    <li><a href="{{pathFor route='register'}}">Inscription</a></li>
+    <li><a href="{{pathFor route='login'}}">Connexion</a></li>
+</ul>
+
 </template>
+
+<!-- <template name="userConnected">
+
+</template> -->
