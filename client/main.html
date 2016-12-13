@@ -1,8 +1,15 @@
+<template name="listItem">
+    <li><button id="moins"> - </button><button id="plus"> + </button> {{note}} {{ title }} : {{ content }}</li>
+</template>
+
+
 <template name="viewIdea">
   <h1>Idea Box</h1>
 	<ul>
       {{#each all_ideas}}
-		  <li><button id="moins">-</button><button id="plus">+</button>{{score}} {{ title }} : {{ content }}</li>
+
+		 {{> listItem}}
+
       {{/each}}
 	</ul>
 
