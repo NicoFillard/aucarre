@@ -53,5 +53,6 @@ if ( Meteor.isClient )
 				ideas.insert( { title : $title.value , content : $content.value } );
 			}
 		}
+
 	} );
 }

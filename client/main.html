@@ -12,7 +12,7 @@
 <template name="viewIdea">
 	<ul>
       {{#each all_ideas}}
-		  <li> {{ title }} : {{ content }}</li>
+		  <li><button id="moins">-</button><button id="plus">+</button>{{score}} {{ title }} : {{ content }}</li>
       {{/each}}
 	</ul>
 
