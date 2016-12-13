@@ -24,7 +24,7 @@ if ( Meteor.isClient )
 {
 
 	// Helpers
-	Template.viewIdea.helpers
+	Template.listItem.helpers
 	(
 		{
 			all_ideas : function ()
@@ -36,11 +36,7 @@ if ( Meteor.isClient )
 						return { id : ideas._id, title : ideas.title, content : ideas.content, note : ideas.note};
 					}
 				);
-			},
-			getResult: function() {
-                //retourne tout le listItem
-            return ideas.find().fetch();
-        }
+			}
 
 		}
 	);
