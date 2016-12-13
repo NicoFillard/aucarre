@@ -3,20 +3,55 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
+if ( Meteor.isServer )
+{
+	Meteor.startup
+	(
+		function ()
+		{
+			// Populate once
+			if ( !ideas.find().count() )
+			{
+				ideas.insert( { title : "java", content : "javascript"} );
+			}
+		}
+	);
+}
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
+if ( Meteor.isClient )
+{
+
+	// Helpers
+	Template.viewIdea.helpers
+	(
+		{
+			all_ideas : function ()
+			{
+				return ideas.find().map
+				(
+					function( ideas, index, cursor )
+					{
+						return { title : ideas.title, content : ideas.content };
+					}
+				);
+			}
+		}
+	);
+
+	// Events
+	Template.viewIdea.events
+	( {
+		'click #submit_idea' : function( event, template )
+		{
+			event.preventDefault();
+			var $title = template.find( "#title" );
+			var $content = template.find( "#content" );
+
+			if( $title.value !== "" && $content.value !== "" ){
+
+				ideas.insert( { title : $title.value , content : $content.value } );
+			}
+		}
+	} );
+}
