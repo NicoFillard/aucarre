@@ -10,13 +10,31 @@ if ( Meteor.isClient )
     ({
         'click #plus': function (event, template) {
             event.preventDefault();
+            var me = this;
+            Meteor.call('plus',{
+                id: me.id,
+                note: me.note
+                }, function(error, result){
 
-            //console.log(this);
-            //this.note = this.note +1;
-            //.update({ note : this.note+1});
-            //console.log(this);
+                if(result){
+                console.log("hello");
+                }
+            }
+            );
+        },
+        'click #moins': function (event, template) {
+            event.preventDefault();
+            var me = this;
+            Meteor.call('moins',{
+                    id: me.id,
+                    note: me.note
+                }, function(error, result){
 
-            //template.listItem.update();
+                    if(result){
+                        console.log("hello");
+                    }
+                }
+            );
         }
     })
 }

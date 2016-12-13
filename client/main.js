@@ -33,10 +33,15 @@ if ( Meteor.isClient )
 				(
 					function( ideas, index, cursor )
 					{
-						return { title : ideas.title, content : ideas.content, note : ideas.note};
+						return { id : ideas._id, title : ideas.title, content : ideas.content, note : ideas.note};
 					}
 				);
-			}
+			},
+			getResult: function() {
+                //retourne tout le listItem
+            return ideas.find().fetch();
+        }
+
 		}
 	);
 
