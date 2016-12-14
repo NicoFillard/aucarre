@@ -8,8 +8,10 @@ if ( Meteor.isClient )
 {
     Template.listItem.events
     ({
-        'click #plus': function (event, template) {
-            event.preventDefault();
+        'click .plus': function (event, Template) {
+            Template.$(".moins").fadeIn();
+            Template.$('.plus').fadeOut();
+
             var me = this;
             Meteor.call('plus',{
                 id: me.id,
@@ -22,8 +24,10 @@ if ( Meteor.isClient )
             }
             );
         },
-        'click #moins': function (event, template) {
+        'click .moins': function (event, template) {
             event.preventDefault();
+            template.$(".moins").fadeOut();
+            template.$(".plus").fadeIn();
             var me = this;
             Meteor.call('moins',{
                     id: me.id,

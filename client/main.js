@@ -24,7 +24,7 @@ if ( Meteor.isClient )
 {
 
 	// Helpers
-	Template.listItem.helpers
+	Template.viewIdea.helpers
 	(
 		{
 			all_ideas : function ()
@@ -32,8 +32,8 @@ if ( Meteor.isClient )
 				return ideas.find().map
 				(
 					function( ideas, index, cursor )
-					{
-						return { id : ideas._id, title : ideas.title, content : ideas.content, note : ideas.note};
+                    {
+						return { id : ideas._id, title : ideas.title, content : ideas.content, note : ideas.note, index: index};
 					}
 				);
 			}
@@ -61,6 +61,6 @@ Template.viewIdea.events({
     'click .logout': function(event){
         event.preventDefault();
         Meteor.logout();
-        Router.go('login');
+        Router.go('home');
     }
 });
